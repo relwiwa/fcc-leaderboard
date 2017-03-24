@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/app';
+import Leaderboard from './components/leaderboard';
 import styles from '../styles/style.css';
 
 render(
-  <App />,
+  <Leaderboard />,
   document.getElementById('root')
 );
