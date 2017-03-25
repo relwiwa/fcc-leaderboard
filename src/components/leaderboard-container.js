@@ -22,7 +22,7 @@ const LeaderboardContainer = (props) => {
     }
 
     return (
-      <table className="leaderboard-container table table-bordered table-striped table-sm text-center">
+      <table className="leaderboard-container table table-bordered table-sm text-center">
         <LeaderboardHeader />
           <ReactCSSTransitionGroup
             transitionName="fade"
