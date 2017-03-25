@@ -1,23 +1,23 @@
 import React from 'react';
 
 const LeaderboardSorting = (props) => {
-  const { onClick, sortedBy } = props;
+  const { onChangeSortedBy, sortedBy } = props;
 
-  const handleChangeSortedBy = (event, criterium) => {
+  const onClick = (event, criterium) => {
     event.preventDefault();
     if (sortedBy !== criterium) {
-      props.onClick(criterium);
+      onChangeSortedBy(criterium);
     }
   }
 
   return (
-    <div className="leaderboard-sorting my-4">
-      <ul className="nav nav-pills justify-content-end">
+    <div className="leaderboard-sorting">
+      <ul className="nav nav-pills justify-content-center justify-content-md-end">
         <li className="nav-item">
           <a
             className={'nav-link' + (sortedBy === 'recent' ? ' active' : '')}
             href="#"
-            onClick={(event) => handleChangeSortedBy(event, 'recent')}
+            onClick={(event) => onClick(event, 'recent')}
           >
             Last Month
           </a>
@@ -26,7 +26,7 @@ const LeaderboardSorting = (props) => {
           <a
             className={'nav-link' + (sortedBy === 'alltime' ? ' active' : '')}
             href="#"
-            onClick={(event) => handleChangeSortedBy(event, 'alltime')}
+            onClick={(event) => onClick(event, 'alltime')}
           >
             All-Time
           </a>

@@ -12,16 +12,4 @@
     transition-timing-function: ease-in;
   }
 
-  .fade-leave.fade-leave-active {
-    opacity:0;
-    transition-property: opacity;
-    transition-duration: 300ms;
-    transition-timing-function: ease-out;
-  }
-
-  .fade-leave {
-    opacity:1;
-  }
-
-
 }
