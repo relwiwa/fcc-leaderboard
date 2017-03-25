@@ -1,6 +1,6 @@
 import React from 'react';
 
-import leaderboardElementStyles from '../styles/leaderboard-element.css';
+import leaderboardElementStyles from '../styles/leaderboard-element.scss';
 
 const LeaderboardElement = (props) => {
   const { alltime, img, rank, recent, username } = props.leaderboardDatum;

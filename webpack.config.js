@@ -26,9 +26,9 @@ const config = {
       },
       {
         loader: ExtractTextPlugin.extract({
-          use: 'css-loader'
+          use: ['css-loader', 'sass-loader']
         }),
-        test: /\.css$/
+        test: /\.scss$/
       },
       {
         use: [
