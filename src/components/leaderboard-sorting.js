@@ -10,27 +10,29 @@ const LeaderboardSorting = (props) => {
     }
   }
 
+  const renderSortedByItem = (criterium, title) => {
+    return (
+      <li className="nav-item">
+        <a
+          className={'nav-link' + (criterium === sortedBy ? ' active' : '')}
+          href="#"
+          onClick={(event) => onClick(event, criterium)}
+        >
+          {title}
+        </a>
+      </li>
+    );
+  }
+
   return (
-    <div className="leaderboard-sorting">
+    <div
+      className="leaderboard-sorting"
+      role="navigation"
+      aria-label="Leaderboard Sorting: Show Top 100 Of Last Month Or Of All-Time"
+    >
       <ul className="nav nav-pills justify-content-center justify-content-md-end">
-        <li className="nav-item">
-          <a
-            className={'nav-link' + (sortedBy === 'recent' ? ' active' : '')}
-            href="#"
-            onClick={(event) => onClick(event, 'recent')}
-          >
-            Last Month
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={'nav-link' + (sortedBy === 'alltime' ? ' active' : '')}
-            href="#"
-            onClick={(event) => onClick(event, 'alltime')}
-          >
-            All-Time
-          </a>
-        </li>
+        {renderSortedByItem('dataRecent', 'Last Month')}
+        {renderSortedByItem('dataAllTime', 'All-Time')}
       </ul>
     </div>
   );

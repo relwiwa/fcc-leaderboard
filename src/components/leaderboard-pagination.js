@@ -6,7 +6,7 @@ const LeaderboardPagination = (props) => {
   const handleChangePage = (event, page) => {
     event.preventDefault();
     onChangePage(page);
-  }
+  };
 
   const renderPaginationItems = (amount) => {
     let items = [];
@@ -23,10 +23,10 @@ const LeaderboardPagination = (props) => {
       items.push(item);
     }
     return items;
-  }
+  };
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Leaderboard Navigation: 20 Scores Per Page">
       <ul className="pagination justify-content-md-end justify-content-center">
         <li className={'page-item' + (currentPage === 1 ? ' disabled' : '')}>
           <a

@@ -17,28 +17,24 @@ class Leaderboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortedBy: 'alltime',
+      sortedBy: 'dataAllTime',
       dataAllTime: null,
       dataRecent: null,
       currentPage: null
     }
-
-    this.handleChangePage = this.handleChangePage.bind(this);
-    this.handleChangeSortedBy = this.handleChangeSortedBy.bind(this);
   }
+
+  // Lifecycle Methods
 
   componentWillMount() {
-    this.getData(dataAllTimeUrl, 'AllTime');
-    this.getData(dataRecentUrl, 'Recent');
+    this.getData(dataAllTimeUrl, 'dataAllTime');
+    this.getData(dataRecentUrl, 'dataRecent');
   }
 
+  // Class Methods
+
   calculateNumPages() {
-    if (this.state.sortedBy === 'alltime') {
-      return Math.ceil(this.state.dataAllTime.length / 20);
-    }
-    else {
-      return Math.ceil(this.state.dataRecent.length / 20);
-    }
+    return Math.ceil(this.state[this.state.sortedBy].length / 20);
   }
 
   getData(url, type) {
@@ -46,15 +42,15 @@ class Leaderboard extends Component {
     const dataRequest = axios.get(url)
       // no sanitazion of external data as dangerouslySetInnerHTML will not be used
       .then((data) => {
-        newStateObject['data' + type] = this.prepareData(data.data, type);
+        newStateObject[type] = this.prepareData(data.data, type);
         newStateObject['currentPage'] = 1;
         // if alltime data is not here yet or there was an error fetching it, show recent data
-        if (type === 'Recent' && (this.state.dataAllTime === null || this.state.dataAllTime.length === 0)) {
-          newStateObject['sortedBy'] = 'recent';
+        if (type === 'dataRecent' && (this.state.dataAllTime === null || this.state.dataAllTime.length === 0)) {
+          newStateObject['sortedBy'] = 'dataRecent';
         }
         this.setState(newStateObject);
       }, (error) => {
-        newStateObject['data' + type] = [];
+        newStateObject[type] = [];
         this.setState(newStateObject);
       });
   }
@@ -86,21 +82,30 @@ class Leaderboard extends Component {
 
   sliceCurrentData() {
     const start = (this.state.currentPage - 1) * 20;
-    if (this.state.sortedBy === 'alltime') {
-      if (this.state.dataAllTime === null || this.state.dataAllTime.length === 0) {
-        return this.state.dataAllTime;
-      }
-      else {
-        return this.state.dataAllTime.slice(start, start + 20);
-      }
+    if (this.state[this.state.sortedBy] === null || this.state[this.state.sortedBy].length === 0) {
+        return this.state[this.state.sortedBy];
     }
     else {
-      if (this.state.dataRecent === null || this.state.dataRecent.length === 0) {
-        return this.state.dataRecent;
-      }
-      else {
-        return this.state.dataRecent.slice(start, start + 20);
-      }
+      return this.state[this.state.sortedBy].slice(start, start + 20);
+    }
+  }
+
+  // Render Methods
+
+  renderLeaderboardControls(currentData, placement) {
+    if (currentData !== null && currentData.length > 0) {
+      return (
+        <LeaderboardControls
+          currentPage={this.state.currentPage}
+          numPages={this.calculateNumPages()}
+          placement={placement}
+          sortedBy={this.state.sortedBy}
+          onChangePage={(page) => this.setState({ currentPage: page })}
+          onChangeSortedBy={(criterium) => this.setState({ sortedBy: criterium })}
+        />
+      );
+    } else {
+      return null;
     }
   }
 
@@ -112,30 +117,12 @@ class Leaderboard extends Component {
     return (
       <div className="leaderboard">
         <h1 className="text-center my-4">freeCodeCamp Leaderboard</h1>
-        {currentData !== null && currentData.length > 0 &&
-          <LeaderboardControls
-            currentPage={currentPage}
-            numPages={this.calculateNumPages()}
-            placement="top"
-            sortedBy={sortedBy}
-            onChangePage={this.handleChangePage}
-            onChangeSortedBy={this.handleChangeSortedBy}
-          />
-        }
+        {this.renderLeaderboardControls(currentData, 'top')}
         <LeaderboardContainer
           sortedBy={sortedBy}
           leaderboardData={currentData}
         />
-        {currentData !== null && currentData.length > 0 &&
-          <LeaderboardControls
-            currentPage={currentPage}
-            numPages={this.calculateNumPages()}
-            placement="bottom"
-            sortedBy={sortedBy}
-            onChangePage={this.handleChangePage}
-            onChangeSortedBy={this.handleChangeSortedBy}
-          />
-        }
+        {this.renderLeaderboardControls(currentData, 'bottom')}
       </div>
     );
   }
