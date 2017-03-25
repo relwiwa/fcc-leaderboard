@@ -27,7 +27,7 @@ const LeaderboardContainer = (props) => {
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}
+            transitionLeaveTimeout={300}
             transitionAppear={true}
             transitionAppearTimeout={500}
             component="tbody"

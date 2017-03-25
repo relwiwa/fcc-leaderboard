@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 import LeaderboardContainer from './leaderboard-container';
+import LeaderboardSorting from './leaderboard-sorting';
 
 const dataAllTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
 const dataRecentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
@@ -18,6 +19,8 @@ class Leaderboard extends Component {
       dataAllTime: null,
       dataRecent: null,
     }
+
+    this.handleChangeSortedBy = this.handleChangeSortedBy.bind(this);
   }
 
   componentWillMount() {
@@ -42,6 +45,10 @@ class Leaderboard extends Component {
       });
   }
 
+  handleChangeSortedBy(criterium) {
+    this.setState({ sortedBy: criterium });
+  }
+
   prepareData(data, criterium) {
     // this most probably is not the right way, mutability
     data = this.sortData(data, criterium.toLowerCase());
@@ -62,9 +69,18 @@ class Leaderboard extends Component {
   render() {
     const { dataRecent, dataAllTime, sortedBy } = this.state;
 
+    const dataHasArrived = (dataRecent !== null && dataRecent.length > 0)
+                         || (dataAllTime !== null && dataAllTime.length > 0);
+
     return (
       <div className="leaderboard">
         <h1 className="text-center my-4">freeCodeCamp Leaderboard</h1>
+        {dataHasArrived &&
+          <LeaderboardSorting
+            sortedBy={this.state.sortedBy}
+            onClick={this.handleChangeSortedBy}
+          />
+        }
         <LeaderboardContainer
           sortedBy={this.state.sortedBy}
           leaderboardData={this.state.sortedBy === 'alltime'

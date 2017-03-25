@@ -1,25 +1,27 @@
 .leaderboard-container {
 
-  .fade-enter {
+  .fade-appear, .fade-enter {
     opacity:0;
   }
 
-  .fade-appear {
-    opacity:0;
-  }
-
+  .fade-appear.fade-appear-active,
   .fade-enter.fade-enter-active {
     opacity:1;
     transition-property: opacity;
-    transition-duration: 0.5s;
+    transition-duration: 500ms;
     transition-timing-function: ease-in;
   }
 
-  .fade-appear.fade-appear-active {
-    opacity:1;
+  .fade-leave.fade-leave-active {
+    opacity:0;
     transition-property: opacity;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
   }
+
+  .fade-leave {
+    opacity:1;
+  }
+
 
 }
