@@ -49,7 +49,12 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })    
   ]
 };
 
