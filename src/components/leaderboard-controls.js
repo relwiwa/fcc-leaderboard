@@ -3,20 +3,22 @@ import React from 'react';
 import LeaderboardPagination from './leaderboard-pagination';
 import LeaderboardSorting from './leaderboard-sorting';
 
+import '../styles/leaderboard-controls.scss';
+
 const LeaderboardControls = (props) => {
   const { currentPage, onChangePage, onChangeSortedBy, numPages, placement, sortedBy } = props;
 
   return (
-    <div className="leaderboard-controls row">
+    <div className="leaderboard-controls row align-middle collapse">
       {placement === 'top' && (
-        <div className="col-12 col-md-4 my-3 my-md-0 flex-md-last">
+        <div className="column small-12 medium-4 small-order-1 medium-order-2 text-center medium-text-right">
           <LeaderboardSorting
             sortedBy={sortedBy}
             onChangeSortedBy={onChangeSortedBy}
           />
         </div>
       )}
-      <div className="col-12 col-md-8 flex-md-first">
+      <div className="pagination-container column small-12 medium-8 small-order-2 medium-order-1 text-center medium-text-right">
         <LeaderboardPagination
           currentPage={currentPage}
           numPages={numPages}
@@ -24,7 +26,7 @@ const LeaderboardControls = (props) => {
         />
       </div>
       {placement === 'bottom' && (
-        <div className="col-12 col-md-4 my-3 my-md-0">
+        <div className="column small-12 medium-4 small-order-2 medium-order-1 text-center medium-text-right">
           <LeaderboardSorting
             sortedBy={sortedBy}
             onChangeSortedBy={onChangeSortedBy}

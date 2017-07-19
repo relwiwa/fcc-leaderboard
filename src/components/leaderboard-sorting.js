@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../styles/leaderboard-sorting.scss';
+
 const LeaderboardSorting = (props) => {
   const { onChangeSortedBy, sortedBy } = props;
 
@@ -12,28 +14,24 @@ const LeaderboardSorting = (props) => {
 
   const renderSortedByItem = (criterium, title) => {
     return (
-      <li className="nav-item">
-        <a
-          className={'nav-link' + (criterium === sortedBy ? ' active' : '')}
-          href="#"
-          onClick={(event) => onClick(event, criterium)}
-        >
-          {title}
-        </a>
-      </li>
+      <a
+        href="#"
+        className={'button ' + (criterium === sortedBy ? '' : 'clear')}
+        onClick={(event) => onClick(event, criterium)}
+      >
+        {title}
+      </a>
     );
   }
 
   return (
     <div
-      className="leaderboard-sorting"
+      className="leaderboard-sorting button-group"
       role="navigation"
       aria-label="Leaderboard Sorting: Show Top 100 Of Last Month Or Of All-Time"
     >
-      <ul className="nav nav-pills justify-content-center justify-content-md-end">
-        {renderSortedByItem('dataRecent', 'Last Month')}
-        {renderSortedByItem('dataAllTime', 'All-Time')}
-      </ul>
+      {renderSortedByItem('dataRecent', 'Last Month')}
+      {renderSortedByItem('dataAllTime', 'All-Time')}
     </div>
   );
 }

@@ -13,7 +13,7 @@ const LeaderboardElement = (props) => {
         <a
           href={`https://www.freecodecamp.com/${username}`}
           title={`${username}'s FreeCodeCamp profile`}>
-          {username}
+          <nobr>{username}</nobr>
         </a>
       </td>
       <td className="align-middle">{recent}</td>

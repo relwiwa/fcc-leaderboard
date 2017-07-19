@@ -1,7 +1,6 @@
 import React from 'react';
-import  ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import LeaderboardContainerStyles from '../styles/leaderboard-container.scss';
+import '../styles/leaderboard-container.scss';
 
 import LeaderboardElement from './leaderboard-element';
 import LeaderboardHeader from './leaderboard-header';
@@ -22,22 +21,15 @@ const LeaderboardContainer = (props) => {
     }
 
     return (
-      <table className="leaderboard-container table table-bordered table-sm text-center">
+      <table className="leaderboard-container text-center">
         <LeaderboardHeader />
-          <ReactCSSTransitionGroup
-            transitionName="fade"
-            transitionEnterTimeout={500}
-            transitionLeave={false}
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            component="tbody"
-          >
+          <tbody>
             {leaderboardData.map((datum) => (
               <LeaderboardElement
                 key={datum.username}
                 leaderboardDatum={datum} />
             ))}
-          </ReactCSSTransitionGroup>
+          </tbody>
       </table>
     );
   }

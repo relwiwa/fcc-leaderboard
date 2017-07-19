@@ -1,0 +1,10 @@
+.leaderboard-controls {
+  .pagination-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    @media screen and (min-width: 40em) {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+}

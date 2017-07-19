@@ -1,0 +1,18 @@
+$grid-column-alias: false;
+$global-flexbox: true;
+
+@import '~foundation-sites/scss/foundation.scss';
+
+@include foundation-global-styles;
+@include foundation-button;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-flex-grid;
+@include foundation-flex-classes;
+@include foundation-forms;
+@include foundation-label;
+@include foundation-menu;
+@include foundation-pagination;
+@include foundation-table;
+@include foundation-typography;
+@include foundation-visibility-classes;

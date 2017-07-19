@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import LeaderboardContainer from './leaderboard-container';
 import LeaderboardControls from './leaderboard-controls';
 
+import '../styles/leaderboard.scss';
+
 const dataAllTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
 const dataRecentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
 
@@ -115,8 +117,8 @@ class Leaderboard extends Component {
     const currentData = this.sliceCurrentData();
     
     return (
-      <div className="leaderboard">
-        <h1 className="text-center my-4">freeCodeCamp Leaderboard</h1>
+      <div className="leaderboard row column">
+        <h1 className="text-center">freeCodeCamp Leaderboard</h1>
         {this.renderLeaderboardControls(currentData, 'top')}
         <LeaderboardContainer
           sortedBy={sortedBy}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+
+import './global-styles.scss';
 import Leaderboard from './components/leaderboard';
-import styles from '../styles/style.scss';
 
 render(
   <Leaderboard />,
