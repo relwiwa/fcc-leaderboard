@@ -26,7 +26,7 @@ const LeaderboardSorting = (props) => {
 
   return (
     <div
-      className="leaderboard-sorting button-group"
+      className="leaderboard-sorting"
       role="navigation"
       aria-label="Leaderboard Sorting: Show Top 100 Of Last Month Or Of All-Time"
     >

@@ -9,16 +9,16 @@ const LeaderboardControls = (props) => {
   const { currentPage, onChangePage, onChangeSortedBy, numPages, placement, sortedBy } = props;
 
   return (
-    <div className="leaderboard-controls row align-middle collapse">
+    <div className="leaderboard-controls grid-x align-middle collapse">
       {placement === 'top' && (
-        <div className="column small-12 medium-4 small-order-1 medium-order-2 text-center medium-text-right">
+        <div className="cell medium-4 small-order-1 medium-order-2 text-center medium-text-right">
           <LeaderboardSorting
             sortedBy={sortedBy}
             onChangeSortedBy={onChangeSortedBy}
           />
         </div>
       )}
-      <div className="pagination-container column small-12 medium-8 small-order-2 medium-order-1 text-center medium-text-right">
+      <div className="pagination-container cell small-12 medium-8 small-order-2 medium-order-1 text-center medium-text-right">
         <LeaderboardPagination
           currentPage={currentPage}
           numPages={numPages}
@@ -26,7 +26,7 @@ const LeaderboardControls = (props) => {
         />
       </div>
       {placement === 'bottom' && (
-        <div className="column small-12 medium-4 small-order-2 medium-order-1 text-center medium-text-right">
+        <div className="cell medium-4 small-order-2 medium-order-1 text-center medium-text-right">
           <LeaderboardSorting
             sortedBy={sortedBy}
             onChangeSortedBy={onChangeSortedBy}

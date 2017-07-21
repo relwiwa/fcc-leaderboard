@@ -117,14 +117,18 @@ class Leaderboard extends Component {
     const currentData = this.sliceCurrentData();
     
     return (
-      <div className="leaderboard row column">
-        <h1 className="text-center">freeCodeCamp Leaderboard</h1>
-        {this.renderLeaderboardControls(currentData, 'top')}
-        <LeaderboardContainer
-          sortedBy={sortedBy}
-          leaderboardData={currentData}
-        />
-        {this.renderLeaderboardControls(currentData, 'bottom')}
+      <div className="leaderboard grid-container grid-container-padded">
+        <div className="grid-x">
+          <div className="cell">
+            <h1 className="text-center">freeCodeCamp Leaderboard</h1>
+            {this.renderLeaderboardControls(currentData, 'top')}
+            <LeaderboardContainer
+              sortedBy={sortedBy}
+              leaderboardData={currentData}
+            />
+            {this.renderLeaderboardControls(currentData, 'bottom')}
+          </div>
+        </div>
       </div>
     );
   }
