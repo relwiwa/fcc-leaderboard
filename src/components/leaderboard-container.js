@@ -22,12 +22,16 @@ const LeaderboardContainer = (props) => {
 
     return (
       <table className="leaderboard-container text-center">
-        <LeaderboardHeader />
+        <LeaderboardHeader
+          sortedBy={sortedBy}
+        />
           <tbody>
             {leaderboardData.map((datum) => (
               <LeaderboardElement
                 key={datum.username}
-                leaderboardDatum={datum} />
+                leaderboardDatum={datum}
+                sortedBy={sortedBy}
+              />
             ))}
           </tbody>
       </table>

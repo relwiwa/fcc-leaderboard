@@ -3,7 +3,10 @@ import React from 'react';
 import leaderboardElementStyles from '../styles/leaderboard-element.scss';
 
 const LeaderboardElement = (props) => {
-  const { alltime, img, rank, recent, username } = props.leaderboardDatum;
+  const { leaderboardDatum: { alltime, img, rank, recent, username }, sortedBy } = props;
+  const shortUsername = username.length > 13
+    ? username.substr(0, 10) + '...'
+    : username;
 
   return (
     <tr className="leaderboard-element">
@@ -13,11 +16,17 @@ const LeaderboardElement = (props) => {
         <a
           href={`https://www.freecodecamp.com/${username}`}
           title={`${username}'s FreeCodeCamp profile`}>
-          <nobr>{username}</nobr>
+          <nobr className="hide-for-small-only">{username}</nobr>
+          <nobr className="hide-for-medium">{shortUsername}</nobr>
         </a>
       </td>
-      <td className="align-middle">{recent}</td>
-      <td className="align-middle">{alltime}</td>
+
+      <td
+        className={'align-middle ' + (sortedBy === 'dataRecent' ? '' : 'hide-for-small-only')}
+      >{recent}</td>
+      <td
+        className={'align-middle ' + (sortedBy === 'dataAllTime' ? '' : 'hide-for-small-only')}
+      >{alltime}</td>
     </tr>
   );
 }
