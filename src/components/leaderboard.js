@@ -1,5 +1,4 @@
 import axios from 'axios';
-import es6Promise from 'es6-promise';
 import React, { Component } from 'react';
 
 import LeaderboardContainer from './leaderboard-container';
@@ -10,7 +9,6 @@ import '../styles/leaderboard.scss';
 const dataAllTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
 const dataRecentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
 
-es6Promise.polyfill();
 const axiosConfig = axios.create({
   timeout: 1000
 });
